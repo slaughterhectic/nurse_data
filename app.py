@@ -48,5 +48,5 @@ def receive_symptoms():
 
 if __name__ == '__main__':
     mqtt_client.loop_start()  # Start MQTT client loop
-    app.run(debug=True,port=5001)
+    app.run(debug=True)
 
