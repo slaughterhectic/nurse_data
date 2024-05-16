@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Received Symptoms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Received Symptoms</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Ambulance Number</th>
+                <th>Symptoms</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for symptom_data in symptoms %}
+            <tr>
+                <td>{{ symptom_data.get('patientName', 'N/A') }}</td>
+                <td>{{ symptom_data.get('ambulanceNumber', 'N/A') }}</td>
+                <td>
+                    {% for symptom in symptom_data.get('symptoms', []) %}
+                        {{ symptom.split('_')|map('capitalize')|join(' ') }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Back to Home</a>
+</body>
+</html>
